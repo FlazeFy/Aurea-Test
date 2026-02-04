@@ -10,6 +10,7 @@ describe("Auth API - POST Login", () => {
                 password: userData.password
             }).then((res) => {
                 cy.expectDefaultResponseProps(res, 200, 'Login successful')
+                expect(res.body.data.role).to.eq('user')
                 cy.expectKeyExist(res.body.data, ["token", "name", "email", "role"])
             })
         })
@@ -19,6 +20,7 @@ describe("Auth API - POST Login", () => {
                 password: adminData.password
             }).then((res) => {
                 cy.expectDefaultResponseProps(res, 200, 'Login successful')
+                expect(res.body.data.role).to.eq('admin')
                 cy.expectKeyExist(res.body.data, ["token", "name", "email", "role"])
             })
         })
@@ -50,7 +52,7 @@ describe("Auth API - POST Login", () => {
             }).then((res) => {
                 cy.expectDefaultResponseProps(res, 422, 'Validation error')
                 cy.expectKeyExist(res.body.data, ["password"])
-                cy.expect(res.body.data.password).to.eq("password must be at least 6 characters")
+                expect(res.body.data.password).to.eq("password must be at least 6 characters")
             })
         })
         it("should fail with failed validation : required payload's is empty", () => {
@@ -64,7 +66,7 @@ describe("Auth API - POST Login", () => {
             }).then((res) => {
                 cy.expectDefaultResponseProps(res, 422, 'Validation error')
                 cy.expectKeyExist(res.body.data, ["password"])
-                cy.expect(res.body.data.password).to.eq("password is required")
+                expect(res.body.data.password).to.eq("password is required")
             })
         })
         it("should fail with failed validation : empty request body", () => {
@@ -75,7 +77,7 @@ describe("Auth API - POST Login", () => {
             }).then((res) => {
                 cy.expectDefaultResponseProps(res, 422, 'Validation error')
                 cy.expectKeyExist(res.body.data, ["body"])
-                cy.expect(res.body.data.body).to.eq("Request body is required")
+                expect(res.body.data.body).to.eq("Request body is required")
             })
         })
     })
