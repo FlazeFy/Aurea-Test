@@ -4,7 +4,7 @@ module.exports = defineConfig({
     e2e: {
         // baseUrl : 'https://aurea.leonardhors.com',
         // For Backend Apps
-        baseUrl: 'http://localhost:5555/',
+        baseUrl: 'http://localhost:4444/',
         // For Frontend Apps
         // baseUrl: 'http://localhost:3000/',
         specPattern : ["integrations"],

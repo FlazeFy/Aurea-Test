@@ -1,12 +1,11 @@
 describe("Feedback API - POST Feedback", () => {
     const loremData = Cypress.env("lorem")
     const url = "/api/feedbacks"
-    let userToken 
-    let adminToken
+    let userToken: any 
+    let adminToken: any
 
     before(() => {
         cy.useLogin("user").then((token: string) => {
-            console.log(token)
             userToken = token
         })
         cy.useLogin("admin").then((token: string) => {
@@ -64,7 +63,7 @@ describe("Feedback API - POST Feedback", () => {
             }).then((res) => {
                 cy.expectDefaultResponseProps(res, 422, 'Validation error')
                 cy.expectKeyExist(res.body.data, ["feedback_note"])
-                cy.expect(res.body.data.feedback_note).to.eq("feedback_note must be at most 255 characters")
+                expect(res.body.data.feedback_note).to.eq("feedback_note must be at most 255 characters")
             })
         })
         it("should fail with failed validation : required payload's is empty", () => {
@@ -81,7 +80,7 @@ describe("Feedback API - POST Feedback", () => {
             }).then((res) => {
                 cy.expectDefaultResponseProps(res, 422, 'Validation error')
                 cy.expectKeyExist(res.body.data, ["feedback_note"])
-                cy.expect(res.body.data.feedback_note).to.eq("feedback_note is required")
+                expect(res.body.data.feedback_note).to.eq("feedback_note is required")
             })
         })
         it("should fail with failed validation : empty request body", () => {
@@ -95,7 +94,7 @@ describe("Feedback API - POST Feedback", () => {
             }).then((res) => {
                 cy.expectDefaultResponseProps(res, 422, 'Validation error')
                 cy.expectKeyExist(res.body.data, ["body"])
-                cy.expect(res.body.data.body).to.eq("Request body is required")
+                expect(res.body.data.body).to.eq("Request body is required")
             })
         })
     })

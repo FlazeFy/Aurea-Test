@@ -1,8 +1,8 @@
 describe("uth API - GET Refresh Token", () => {
     const loremData = Cypress.env("lorem")
     const url = "/api/auth/refresh-token"
-    let userToken 
-    let adminToken
+    let userToken: any 
+    let adminToken: any
 
     before(() => {
         cy.useLogin("user").then((token: string) => {
