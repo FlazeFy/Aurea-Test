@@ -35,7 +35,7 @@ describe("Schedule Mark API - DELETE Schedule Mark By Id", () => {
                 },
                 failOnStatusCode: false
             }).then((res) => {
-                cy.expectDefaultResponseProps(res, 404, 'Schedule Mark not found')
+                cy.expectDefaultResponseProps(res, 404, 'Schedule mark not found')
             })
         })
         it("should fail with failed validation : id is not valid uuid", () => {

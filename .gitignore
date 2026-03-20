@@ -2,3 +2,4 @@
 *.png
 cypress/
 cypress.env.json
+.env
